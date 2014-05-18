@@ -9,29 +9,37 @@
 3. Set the working directory in R with setwd()
 4. read the data into a data frame:
 
-```{r}
-DF<-read.csv("activity.csv")
+
+```r
+DF <- read.csv("activity.csv")
 ```
+
 
 ## What is mean total number of steps taken per day?
 
 1. Histogram of steps groupped by date (omitting NAs):
 
-```{r}
-x<-aggregate(steps ~ date, DF, FUN=sum)
+
+```r
+x <- aggregate(steps ~ date, DF, FUN = sum)
 hist(x$steps)
 ```
 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
+
 2. Mean and median of steps per day
 
-```{r}
-meanSteps<-mean(x$steps)
-medianSteps<-median(x$steps)
+
+```r
+meanSteps <- mean(x$steps)
+medianSteps <- median(x$steps)
 ```
 
-The mean steps per day is `r as.integer(meanSteps)`
 
-The median steps per day is `r as.integer(medianSteps)`
+The mean steps per day is 10766
+
+The median steps per day is 10765
 
 ## What is the average daily activity pattern?
 
