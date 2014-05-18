@@ -48,10 +48,47 @@ plot(x1$interval,x1$steps,type="l")
 maxSteps<-x1$interval[which.max(x1$steps)]
 ```
 
-the maximum number of steps(on average) is at interval `r maxSteps`
+The maximum number of steps(on average) is at interval `r maxSteps`
 
 ## Imputing missing values
 
+There are a number of missing values (NA) in the original data, in particular
+these NAs affect steps:
+```{r}
+naSteps<-sum(is.na(DF$steps))
+naDate<-sum(is.na(DF$date))
+naInterval<-sum(is.na(DF$interval))
+```
 
+The number of missing entries in steps is `r naSteps`.
+
+The number of missing entries in dates is `r naDate`.
+
+The number of missing entries in interval is `r naInterval`.
+
+### Imputation strategy: use average steps to populate missing values
+
+```{r}
+indx <- which(is.na(DF[, 1])==TRUE) 
+DF[indx,1]<-mean(x1$steps[x1$interval==DF[indx,3]],na.rm=TRUE)
+```
+
+Histogram of steps groupped by date (After imputing):
+
+```{r}
+x<-aggregate(steps ~ date, DF, FUN=sum)
+hist(x$steps)
+```
+
+Mean and median of steps per day
+
+```{r}
+meanSteps2<-mean(x$steps)
+medianSteps2<-median(x$steps)
+```
+
+The mean steps per day is `r as.integer(meanSteps2)`
+
+The median steps per day is `r as.integer(medianSteps2)`
 
 ## Are there differences in activity patterns between weekdays and weekends?
