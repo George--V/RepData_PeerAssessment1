@@ -35,8 +35,20 @@ The median steps per day is `r as.integer(medianSteps)`
 
 ## What is the average daily activity pattern?
 
+1. Plot average steps taken by interval 
 
+```{r}
+x1<-aggregate(steps ~ interval, DF, FUN=mean)
+plot(x1$interval,x1$steps,type="l")
+```
 
+2. Which 5-minute interval contains the maximum number of steps
+
+```{r}
+maxSteps<-x1$interval[which.max(x1$steps)]
+```
+
+the maximum number of steps(on average) is at interval `r maxSteps`
 
 ## Imputing missing values
 
