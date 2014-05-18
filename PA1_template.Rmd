@@ -19,7 +19,7 @@ DF<-read.csv("activity.csv")
 
 ```{r}
 x<-aggregate(steps ~ date, DF, FUN=sum)
-hist(x$steps)
+hist(x$steps, main="steps")
 ```
 
 2. Mean and median of steps per day
@@ -39,7 +39,7 @@ The median steps per day is `r as.integer(medianSteps)`
 
 ```{r}
 x1<-aggregate(steps ~ interval, DF, FUN=mean)
-plot(x1$interval,x1$steps,type="l")
+plot(x1$interval,x1$steps,type="l",main="steps by interval")
 ```
 
 2. Which 5-minute interval contains the maximum number of steps
@@ -77,7 +77,7 @@ Histogram of steps groupped by date (After imputing):
 
 ```{r}
 x<-aggregate(steps ~ date, DF, FUN=sum)
-hist(x$steps)
+hist(x$steps, main="steps")
 ```
 
 Mean and median of steps per day
@@ -111,6 +111,6 @@ DFwe<-DF2[which(DF2$DayofWeek=="Sunday" | DF2$DayofWeek=="Saturday"),]
 
 ```{r}
 par(mfrow=c(2,1))
-plot(DFwd$interval,DFwd$steps,type="l")
-plot(DFwe$interval,DFwe$steps,type="l")
+plot(DFwd$interval,DFwd$steps,type="l", main="Weekdays")
+plot(DFwe$interval,DFwe$steps,type="l", main="Weekends")
 ```

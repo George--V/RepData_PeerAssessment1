@@ -22,7 +22,7 @@ DF <- read.csv("activity.csv")
 
 ```r
 x <- aggregate(steps ~ date, DF, FUN = sum)
-hist(x$steps)
+hist(x$steps, main = "steps")
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
@@ -48,7 +48,7 @@ The median steps per day is 10765
 
 ```r
 x1 <- aggregate(steps ~ interval, DF, FUN = mean)
-plot(x1$interval, x1$steps, type = "l")
+plot(x1$interval, x1$steps, type = "l", main = "steps by interval")
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
@@ -96,7 +96,7 @@ Histogram of steps groupped by date (After imputing):
 
 ```r
 x <- aggregate(steps ~ date, DF, FUN = sum)
-hist(x$steps)
+hist(x$steps, main = "steps")
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
@@ -141,14 +141,10 @@ DFwe <- DF2[which(DF2$DayofWeek == "Sunday" | DF2$DayofWeek == "Saturday"),
 
 
 ```r
-plot(DFwd$interval, DFwd$steps, type = "l")
+par(mfrow = c(2, 1))
+plot(DFwd$interval, DFwd$steps, type = "l", main = "Weekdays")
+plot(DFwe$interval, DFwe$steps, type = "l", main = "Weekends")
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-121.png) 
-
-```r
-plot(DFwe$interval, DFwe$steps, type = "l")
-```
-
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-122.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
 
