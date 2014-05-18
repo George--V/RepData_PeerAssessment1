@@ -92,3 +92,24 @@ The mean steps per day is `r as.integer(meanSteps2)`
 The median steps per day is `r as.integer(medianSteps2)`
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+1. new dataframe with weekday included:
+
+```{r}
+DF2<-cbind(DF,weekdays(as.Date(DF$date)))
+names(DF2)[4]<-"DayofWeek"
+```
+
+2. Separate weekdays and weekends
+
+```{r}
+DFwd<-DF2[which(DF2$DayofWeek!="Sunday" & DF2$DayofWeek!="Saturday"),]
+DFwe<-DF2[which(DF2$DayofWeek=="Sunday" | DF2$DayofWeek=="Saturday"),]
+```
+
+3. plot
+
+```{r}
+plot(DFwd$interval,DFwd$steps,type="l")
+plot(DFwe$interval,DFwe$steps,type="l")
+```
