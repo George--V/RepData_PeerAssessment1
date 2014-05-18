@@ -110,6 +110,7 @@ DFwe<-DF2[which(DF2$DayofWeek=="Sunday" | DF2$DayofWeek=="Saturday"),]
 3. plot
 
 ```{r}
+par(mfrow=c(2,1))
 plot(DFwd$interval,DFwd$steps,type="l")
 plot(DFwe$interval,DFwe$steps,type="l")
 ```
